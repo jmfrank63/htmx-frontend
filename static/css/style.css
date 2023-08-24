@@ -137,8 +137,15 @@ body {
     justify-items: center;
     /* horizontally center the items */
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #e5e5e5;
+    border: 1px solid #ccc;
+}
+
+.profile-content-mobile {
+    display: none;
+    background-color: #e5e5e5;
+    border: 1px solid #ccc;
 }
 
 .profile-image {
@@ -177,30 +184,30 @@ body {
     display: none;
 }
 
+/* Hide the actual checkbox */
+#hamburgerToggleMobile {
+    display: none;
+}
+
 .hamburger-dropdown {
     grid-row: 2;
-    /* If it's in a 1fr auto layout like before, it will position beneath */
-    grid-column: 3;
-    /* If the hamburger is in the third column */
+    grid-column: 2 + 3;
     display: none;
     list-style-type: none;
     background-color: #e5e5e5;
     border: 1px solid #ccc;
-    width: 150px;
-    /* adjust as needed */
     position: absolute;
     bottom: calc(100% + 1.5em);
-    /* Makes it positioned absolutely to its nearest relative parent */
-    /* Position it above the hamburger menu, the value is 100% of the height of the menu itself */
     right: 0;
-    /* Align it to the right edge of the menu */
     z-index: 1;
-    /* Keeps the dropdown below the hamburger icon but above everything else */
+    width: auto;
+    padding: 0;
 }
 
 .hamburger-dropdown li {
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    background-color: #e5e5e5;
 }
 
 .hamburger-dropdown li:last-child {
@@ -210,7 +217,7 @@ body {
 .hamburger-dropdown a {
     text-decoration: none;
     color: #333;
-    display: block;
+    display: grid;
 }
 
 .hamburger-dropdown a:hover {
@@ -220,5 +227,70 @@ body {
 /* Show dropdown when checkbox is checked */
 #hamburgerToggle:checked+.hamburger-menu+.hamburger-dropdown {
     display: grid;
-    /* Instead of block */
+}
+
+#hamburgerToggleMobile:checked+.hamburger-menu+.hamburger-dropdown {
+    display: grid;
+    top: 1.5em;
+    right: 0;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+    .chat-app {
+        grid-template-columns: 1fr;
+        /* Stack columns for tablet */
+    }
+
+    .chat-container {
+        grid-template-rows: 3em auto 3em;
+        /* Stack messages and form */
+    }
+
+    .profile-column {
+        display: none;
+        /* Hide profile for tablet */
+    }
+
+    .profile-content-mobile {
+        display: grid;
+        grid-template-columns: 1fr 60% 1fr;
+        padding: 10px;
+    }
+
+    .message {
+        max-width: 50%;
+        /* Make messages a bit wider on tablet */
+    }
+}
+
+/* Phone styles */
+@media (max-width: 768px) {
+    .chat-container {
+        grid-template-rows: 3em auto 3em;
+        /* Stack messages and form */
+    }
+
+    .message-form {
+        grid-template-columns: 1fr;
+        /* Stack input and send button */
+        gap: 5px;
+    }
+
+    .send-button,
+    .message-input {
+        width: 100%;
+        /* Full-width input and button */
+    }
+
+    .message {
+        max-width: 100%;
+        /* Messages take full width on phone */
+    }
+
+    .profile-content-mobile {
+        display: grid;
+        grid-template-columns: 1fr 60% 1fr;
+        padding: 10px;
+    }
 }
