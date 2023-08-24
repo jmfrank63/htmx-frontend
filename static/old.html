@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Playground</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4"
+        integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-box">
+            <div class="message left" hx-post="/_ai" hx-trigger="load"></div>
+            <div class="message right">I'm good, thanks for asking!</div>
+            <div class="message left">It's a sunny day today.</div>
+            <div class="message right">Yes, it is. Perfect for a walk.</div>
+        </div>
+
+        <div class="chat-input-container">
+            <form hx-post="/_ai" hx-trigger="submit" hx-target="#chat-box" hx-swap="beforeend">
+                <input type="text" name="message" placeholder="Type a message..." class="chat-input">
+                <button type="submit" class="send-button">Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.chat-app {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    /* profile takes only the width it needs and chat-container takes the rest */
+    height: 100vh;
+    /* Full viewport height */
+}
+
+.chat-container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    /* Most space for messages, auto space for form */
+    overflow-y: auto;
+    /* Allow scrolling if content exceeds height */
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+}
+
+.chat-messages {
+    display: grid;
+    max-height: auto;
+    overflow-y: auto;
+    /* scrollable if content exceeds max-height */
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    /* a divider between messages and the input form */
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    /* vertical spacing between messages */
+    max-width: 25%;
+    /* messages won't stretch across the entire container */
+    word-wrap: break-word;
+}
+
+.left {
+    background-color: blue;
+    color: white;
+    justify-self: start;
+    /* left-aligned in grid */
+}
+
+.right {
+    background-color: green;
+    color: white;
+    justify-self: end;
+    /* right-aligned in grid */
+}
+
+.message-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    /* input will take the available space, button only what it needs */
+    gap: 10px;
+    /* gap between input and button */
+    padding: 10px;
+}
+
+.message-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    /* padding will be included in the total width */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.send-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: darkgreen;
+}
+
+.profile-column {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    /* The chat-list will take up all the available space,
+       and the profile-content will take only what it needs. */
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    background-color: #e5e5e5;
+    overflow-y: auto;
+    /* Allow scrolling if content exceeds height */
+    min-width: 20%;
+}
+
+.chat-list {
+    overflow-y: auto;
+    /* Allow scrolling if there are many chats */
+    border-bottom: 1px solid #ccc;
+    /* A divider between chat list and profile content */
+}
+
+.single-chat {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Smooth transition effect */
+}
+
+.single-chat:hover {
+    background-color: #f5f5f5;
+    /* Light grey background on hover */
+}
+
+.single-chat:last-child {
+    border-bottom: none;
+    /* Remove border from the last chat item */
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    /* equally split the content into three parts horizontally */
+    gap: 10px;
+    align-items: center;
+    /* vertically center the items */
+    justify-items: center;
+    /* horizontally center the items */
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.profile-image {
+    width: 2em;
+    /* adjusted for horizontal layout */
+    height: 2em;
+    /* adjusted for horizontal layout */
+    border-radius: 50%;
+    /* to make the image round */
+    object-fit: cover;
+    /* ensures that the image retains its aspect ratio */
+    justify-self: start;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    text-align: center;
+    /* you can actually remove this line now if you want the menu to be right-aligned entirely */
+    font-size: 24px;
+    justify-self: end;
+    /* this line right-aligns the hamburger menu within its grid cell */
+    position: relative;
+    /* Makes sure the dropdown is positioned relative to this element */
+    z-index: 2;
+    /* Ensures the menu sits on top */
+}
+
+/* Hide the actual checkbox */
+#hamburgerToggle {
+    display: none;
+}
+
+.hamburger-dropdown {
+    grid-row: 2;
+    /* If it's in a 1fr auto layout like before, it will position beneath */
+    grid-column: 3;
+    /* If the hamburger is in the third column */
+    display: none;
+    list-style-type: none;
+    background-color: #e5e5e5;
+    border: 1px solid #ccc;
+    width: 150px;
+    /* adjust as needed */
+    position: absolute;
+    bottom: calc(100% + 1.5em);
+    /* Makes it positioned absolutely to its nearest relative parent */
+    /* Position it above the hamburger menu, the value is 100% of the height of the menu itself */
+    right: 0;
+    /* Align it to the right edge of the menu */
+    z-index: 1;
+    /* Keeps the dropdown below the hamburger icon but above everything else */
+}
+
+.hamburger-dropdown li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.hamburger-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.hamburger-dropdown a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.hamburger-dropdown a:hover {
+    background-color: #ccc;
+}
+
+/* Show dropdown when checkbox is checked */
+#hamburgerToggle:checked+.hamburger-menu+.hamburger-dropdown {
+    display: grid;
+    /* Instead of block */
+}
